@@ -47,8 +47,13 @@ const ManageHero = () => {
     if (!file) return;
 
     try {
-      const { url } = await uploadImage(file);
-      setFormData((prev) => ({ ...prev, heroImage: url }));
+      // --- UPDATED ---
+      // We now receive { url, public_id } from the uploadImage API
+      const { url, public_id } = await uploadImage(file);
+
+      // --- UPDATED ---
+      // We store the full image object in state
+      setFormData((prev) => ({ ...prev, heroImage: { url, public_id } }));
       toast.success('Image uploaded! Click "Save Changes" to apply.');
     } catch (error) {
       toast.error("Image upload failed. Please try again.");
@@ -59,6 +64,9 @@ const ManageHero = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // --- NOTE ---
+      // formData now sends { heroImage: { url: "...", public_id: "..." } }
+      // Your backend 'updateHero' must be ready for this structure.
       await performUpdate(formData);
       toast.success("Hero section updated successfully!");
     } catch (error) {
@@ -95,18 +103,18 @@ const ManageHero = () => {
                 Hero Image
               </label>
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                {formData.heroImage && (
+                {/* --- UPDATED --- */}
+                {/* Check for `.url` and use it directly. Remove VITE_SERVER_BASE_URL. */}
+                {formData.heroImage?.url && (
                   <img
-                    src={`${import.meta.env.VITE_SERVER_BASE_URL}${
-                      formData.heroImage
-                    }`}
+                    src={formData.heroImage.url}
                     alt="Hero preview"
                     className="w-full sm:w-48 h-24 object-cover rounded-md border"
                   />
                 )}
                 {/* 1. The Button now correctly renders as a <label>.
-      2. 'htmlFor' links this label to the input with id="hero-image-upload".
-    */}
+                    2. 'htmlFor' links this label to the input with id="hero-image-upload".
+                */}
                 <Button
                   as="label"
                   htmlFor="hero-image-upload" // This links the label to the input
@@ -125,7 +133,7 @@ const ManageHero = () => {
               </div>
             </div>
 
-            {/* Text Inputs */}
+            {/* Text Inputs (No changes here) */}
             <div>
               <label
                 htmlFor="heroTitle"

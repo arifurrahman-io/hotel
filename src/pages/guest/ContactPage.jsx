@@ -14,6 +14,10 @@ import FloatingLabelInput from "../../components/ui/FloatingLabelInput";
 import FloatingLabelTextarea from "../../components/ui/FloatingLabelTextarea";
 import { MapPin, Phone, Mail, Send, Hotel } from "lucide-react";
 
+// Fallback image in case one isn't set in the admin panel
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1566073771259-6a8506099945";
+
 const ContactPage = () => {
   const settings = useSettingsStore((state) => state.settings);
   const { request: performSendMessage, loading: isSending } =
@@ -53,7 +57,7 @@ const ContactPage = () => {
   return (
     <div className="bg-gray-50 py-16 sm:py-24">
       <div className="container mx-auto px-4">
-        {/* Header Section */}
+        {/* Header Section (No changes) */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,9 +84,9 @@ const ContactPage = () => {
             {/* Left Column: Image & Details */}
             <div className="relative h-64 lg:h-full">
               <img
-                src={`${import.meta.env.VITE_SERVER_BASE_URL}${
-                  settings.aboutImageOne
-                }`}
+                // --- UPDATED ---
+                // We now access the .url property from the settings object
+                src={settings.aboutImageOne?.url || FALLBACK_IMAGE}
                 alt="Hotel Lobby"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -105,7 +109,7 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Right Column: Contact Form */}
+            {/* Right Column: Contact Form (No changes here) */}
             <div className="p-8 lg:p-12">
               <h2 className="text-2xl font-bold text-gray-800 mb-6">
                 Send us a Message

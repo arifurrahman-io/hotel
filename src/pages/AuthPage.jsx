@@ -33,6 +33,12 @@ const AuthPage = () => {
     password: "",
   });
 
+  // --- UPDATED ---
+  // Derive the server base URL from the API base URL.
+  // This removes the need for VITE_SERVER_BASE_URL.
+  // "https://hotel-server-uvvx.onrender.com/api" -> "https://hotel-server-uvvx.onrender.com"
+  const serverBaseUrl = import.meta.env.VITE_API_BASE_URL.replace("/api", "");
+
   const { request: performLogin, loading: isLoginLoading } = useApi(loginUser);
   const { request: performRegister, loading: isRegisterLoading } =
     useApi(registerUser);
@@ -165,17 +171,15 @@ const AuthPage = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <a
-                  href={`${
-                    import.meta.env.VITE_SERVER_BASE_URL
-                  }/api/auth/google`}
+                  // --- UPDATED ---
+                  href={`${serverBaseUrl}/api/auth/google`}
                   className="inline-flex w-full justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   <BsGoogle className="w-5 h-5" />
                 </a>
                 <a
-                  href={`${
-                    import.meta.env.VITE_SERVER_BASE_URL
-                  }/api/auth/facebook`}
+                  // --- UPDATED ---
+                  href={`${serverBaseUrl}/api/auth/facebook`}
                   className="inline-flex w-full justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   <BsFacebook className="w-5 h-5 text-[#1877F2]" />

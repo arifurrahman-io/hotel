@@ -7,7 +7,10 @@ const MobileRoomCard = ({ room, onEdit, onDelete, isDeleting }) => {
     <div className="bg-white p-4 rounded-lg shadow border border-gray-200">
       <div className="flex gap-4">
         <img
-          src={`http://localhost:8000${room.images[0]}`}
+          // --- UPDATED ---
+          // We no longer need VITE_SERVER_BASE_URL.
+          // room.images[0] is now a complete URL from Cloudinary.
+          src={room.images[0]}
           alt={room.name}
           className="w-24 h-24 object-cover rounded-md flex-shrink-0"
         />

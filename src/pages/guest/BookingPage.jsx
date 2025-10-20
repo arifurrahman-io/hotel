@@ -89,7 +89,7 @@ const BookingPage = () => {
           Confirm Your Booking
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column: Form & Payment */}
+          {/* Left Column: Form & Payment (No changes here) */}
           <div className="lg:col-span-2">
             <Card>
               <Card.Header>
@@ -129,9 +129,13 @@ const BookingPage = () => {
               <Card>
                 <Card.Header>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_BASE_URL}${
-                      room.images[0]
-                    }`}
+                    // --- UPDATED ---
+                    // We now use the .url property from the Cloudinary object
+                    // and provide a fallback.
+                    src={
+                      room.images[0]?.url ||
+                      "https://via.placeholder.com/150?text=No+Image"
+                    }
                     alt={room.name}
                     className="w-full h-40 object-cover rounded-lg"
                   />

@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import { Gem, Heart, Leaf } from "lucide-react";
 
+// Fallback image in case one isn't set in the admin panel
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1566073771259-6a8506099945";
+
 const AboutPage = () => {
   const settings = useSettingsStore((state) => state.settings);
 
@@ -21,14 +25,15 @@ const AboutPage = () => {
     );
   }
 
-  // Use optional chaining for safety, providing default values
+  // --- UPDATED ---
+  // Use null as the default for image objects for safer handling
   const {
     aboutTitle = "Our Story",
     aboutSubtitle = "Crafting Unforgettable Experiences",
     aboutParagraphOne = "",
     aboutParagraphTwo = "",
-    aboutImageOne = "",
-    aboutImageTwo = "",
+    aboutImageOne = null,
+    aboutImageTwo = null,
   } = settings;
 
   return (
@@ -37,7 +42,9 @@ const AboutPage = () => {
       <div className="relative bg-gray-900 py-32 sm:py-48">
         <div className="absolute inset-0">
           <img
-            src={`${import.meta.env.VITE_SERVER_BASE_URL}${aboutImageOne}`}
+            // --- UPDATED ---
+            // Use the .url property and provide a fallback
+            src={aboutImageOne?.url || FALLBACK_IMAGE}
             alt="Luxurious hotel interior"
             className="w-full h-full object-cover opacity-40"
           />
@@ -65,7 +72,7 @@ const AboutPage = () => {
       {/* ==================== OUR STORY SECTION ==================== */}
       <div className="py-24">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content */}
+          {/* Text Content (No changes here) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -81,7 +88,7 @@ const AboutPage = () => {
             </div>
           </motion.div>
 
-          {/* Image Content - FIX APPLIED HERE */}
+          {/* Image Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -91,7 +98,9 @@ const AboutPage = () => {
             <div className="relative pt-[100%] rounded-2xl shadow-xl overflow-hidden">
               <img
                 className="absolute inset-0 w-full h-full object-cover"
-                src={`${import.meta.env.VITE_SERVER_BASE_URL}${aboutImageTwo}`}
+                // --- UPDATED ---
+                // Use the .url property and provide a fallback
+                src={aboutImageTwo?.url || FALLBACK_IMAGE}
                 alt="Hotel amenity details"
               />
             </div>

@@ -18,8 +18,11 @@ const RoomCard = ({ room, isAvailable = true, availabilityText }) => {
     roomCount,
   } = room;
 
-  const imageUrl = images?.[0]
-    ? `${import.meta.env.VITE_SERVER_BASE_URL}${images[0]}`
+  // --- UPDATED ---
+  // We now access the .url property of the first image object.
+  // We no longer need VITE_SERVER_BASE_URL.
+  const imageUrl = images?.[0]?.url
+    ? images[0].url
     : "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b";
 
   const hasWifi = amenities?.includes("High-Speed WiFi");

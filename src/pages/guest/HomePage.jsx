@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
-import { format } from "date-fns";
 
 // Custom Hooks & API
 import useApi from "../../hooks/useApi";
@@ -24,6 +23,10 @@ import {
   ShieldCheck,
   Star,
 } from "lucide-react";
+
+// Fallback image in case one isn't set in the admin panel
+const FALLBACK_HERO_IMAGE =
+  "https://images.unsplash.com/photo-1542314831-068cd1dbb5eb";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -47,9 +50,11 @@ const HomePage = () => {
   }, [fetchRooms, fetchHero]);
 
   const featuredRooms = rooms?.slice(0, 3);
-  const heroImageURL = heroSettings
-    ? `${import.meta.env.VITE_SERVER_BASE_URL}${heroSettings.data.heroImage}`
-    : "";
+
+  // --- UPDATED ---
+  // We now access the .url property from the heroImage object
+  const heroImageURL =
+    heroSettings?.data?.heroImage?.url || FALLBACK_HERO_IMAGE;
 
   const handleSearch = () => {
     if (!dates.from || !dates.to) {

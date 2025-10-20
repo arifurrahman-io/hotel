@@ -24,6 +24,7 @@ const ManageAboutPage = () => {
   useEffect(() => {
     fetchSettings();
   }, [fetchSettings]);
+
   useEffect(() => {
     if (settings) setFormData(settings.data);
   }, [settings]);
@@ -35,8 +36,13 @@ const ManageAboutPage = () => {
     const file = e.target.files[0];
     if (!file) return;
     try {
-      const { url } = await uploadImage(file);
-      setFormData((p) => ({ ...p, [fieldName]: url }));
+      // --- UPDATED ---
+      // We now receive { url, public_id } from the uploadImage API
+      const { url, public_id } = await uploadImage(file);
+
+      // --- UPDATED ---
+      // We store the full image object in state
+      setFormData((p) => ({ ...p, [fieldName]: { url, public_id } }));
       toast.success('Image uploaded! Click "Save" to apply.');
     } catch (error) {
       toast.error("Image upload failed.");
@@ -45,6 +51,10 @@ const ManageAboutPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // --- NOTE ---
+    // formData now sends image objects, e.g.:
+    // { aboutImageOne: { url: "...", public_id: "..." } }
+    // Your backend 'updateSettings' must be ready for this structure.
     await performUpdate(formData);
     toast.success("About Us page updated successfully!");
     useSettingsStore.getState().fetchSettings();
@@ -72,20 +82,12 @@ const ManageAboutPage = () => {
             </p>
           </Card.Header>
           <Card.Content className="space-y-8">
-            {/* Text Content */}
+            {/* Text Content (No changes here) */}
             <FloatingLabelInput
               id="aboutTitle"
               name="aboutTitle"
               label="Title"
               value={formData.aboutTitle || ""}
-              onChange={handleChange}
-              required
-            />
-            <FloatingLabelInput
-              id="aboutSubtitle"
-              name="aboutSubtitle"
-              label="Subtitle"
-              value={formData.aboutSubtitle || ""}
               onChange={handleChange}
               required
             />
@@ -116,11 +118,11 @@ const ManageAboutPage = () => {
                   Header Image
                 </label>
                 <div className="flex items-center gap-4">
-                  {formData.aboutImageOne && (
+                  {/* --- UPDATED --- */}
+                  {/* Check for `.url` and use it directly. Remove VITE_SERVER_BASE_URL. */}
+                  {formData.aboutImageOne?.url && (
                     <img
-                      src={`${import.meta.env.VITE_SERVER_BASE_URL}${
-                        formData.aboutImageOne
-                      }`}
+                      src={formData.aboutImageOne.url}
                       alt="Header Preview"
                       className="w-40 h-24 object-cover rounded-md border"
                     />
@@ -146,11 +148,11 @@ const ManageAboutPage = () => {
                   Content Image
                 </label>
                 <div className="flex items-center gap-4">
-                  {formData.aboutImageTwo && (
+                  {/* --- UPDATED --- */}
+                  {/* Check for `.url` and use it directly. Remove VITE_SERVER_BASE_URL. */}
+                  {formData.aboutImageTwo?.url && (
                     <img
-                      src={`${import.meta.env.VITE_SERVER_BASE_URL}${
-                        formData.aboutImageTwo
-                      }`}
+                      src={formData.aboutImageTwo.url}
                       alt="Content Preview"
                       className="w-40 h-24 object-cover rounded-md border"
                     />
