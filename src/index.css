@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Use the @layer directive to add custom base styles
+  without interfering with Tailwind's utility classes.
+*/
+@layer base {
+  html {
+    /* Apply a modern, clean font stack */
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    /* Enable smooth scrolling for a better user experience */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* Set a default light background color and primary text color */
+    @apply bg-gray-50 text-gray-800;
+
+    /* Improve font rendering for a crisper look */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

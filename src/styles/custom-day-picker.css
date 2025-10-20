@@ -1,0 +1,23 @@
+/* Import the library's base styles first */
+@import "react-day-picker/dist/style.css";
+
+/* Modern Overrides for react-day-picker to work well with Tailwind CSS.
+  We use the !important flag to ensure these styles take precedence 
+  over Tailwind's base style resets.
+*/
+:root {
+  --rdp-cell-size: 40px; /* Make the calendar cells larger */
+  --rdp-accent-color: #4f46e5; /* Indigo-600 to match your theme */
+  --rdp-background-color: #f1f5f9; /* A light gray for the hover effect */
+}
+
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: var(--rdp-background-color) !important;
+}
+
+.rdp-day_selected,
+.rdp-day_selected:focus-visible,
+.rdp-day_selected:hover {
+  background-color: var(--rdp-accent-color) !important;
+  color: white !important;
+}
