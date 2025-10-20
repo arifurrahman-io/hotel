@@ -141,7 +141,9 @@ const RoomDetailsPage = () => {
                 onClick={() => openGallery(0)}
               >
                 <img
-                  src={`http://localhost:8000${room.images[0]}`}
+                  src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                    room.images[0]
+                  }`}
                   alt={room.name}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                 />
@@ -153,7 +155,7 @@ const RoomDetailsPage = () => {
                   onClick={() => openGallery(index + 1)}
                 >
                   <img
-                    src={`http://localhost:8000${img}`}
+                    src={`${import.meta.env.VITE_SERVER_BASE_URL}${img}`}
                     alt={`${room.name} view ${index + 2}`}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
@@ -269,7 +271,9 @@ const RoomDetailsPage = () => {
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center"
           >
             <img
-              src={`http://localhost:8000${room.images[selectedImageIndex]}`}
+              src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                room.images[selectedImageIndex]
+              }`}
               className="max-w-[90vw] max-h-[80vh] object-contain"
             />
             <button

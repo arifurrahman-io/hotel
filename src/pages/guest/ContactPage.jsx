@@ -80,7 +80,9 @@ const ContactPage = () => {
             {/* Left Column: Image & Details */}
             <div className="relative h-64 lg:h-full">
               <img
-                src={`http://localhost:8000${settings.aboutImageOne}`}
+                src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                  settings.aboutImageOne
+                }`}
                 alt="Hotel Lobby"
                 className="absolute inset-0 w-full h-full object-cover"
               />

@@ -97,7 +97,9 @@ const ManageHero = () => {
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 {formData.heroImage && (
                   <img
-                    src={`http://localhost:8000${formData.heroImage}`}
+                    src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                      formData.heroImage
+                    }`}
                     alt="Hero preview"
                     className="w-full sm:w-48 h-24 object-cover rounded-md border"
                   />

@@ -165,13 +165,17 @@ const AuthPage = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <a
-                  href="http://localhost:8000/api/auth/google"
+                  href={`${
+                    import.meta.env.VITE_SERVER_BASE_URL
+                  }/api/auth/google`}
                   className="inline-flex w-full justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   <BsGoogle className="w-5 h-5" />
                 </a>
                 <a
-                  href="http://localhost:8000/api/auth/facebook"
+                  href={`${
+                    import.meta.env.VITE_SERVER_BASE_URL
+                  }/api/auth/facebook`}
                   className="inline-flex w-full justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   <BsFacebook className="w-5 h-5 text-[#1877F2]" />

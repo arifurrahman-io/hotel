@@ -141,7 +141,9 @@ const ManageRooms = () => {
                     >
                       <td className="p-3 flex items-center gap-4">
                         <img
-                          src={`http://localhost:8000${room.images[0]}`}
+                          src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                            room.images[0]
+                          }`}
                           alt={room.name}
                           className="w-20 h-14 object-cover rounded-md"
                         />

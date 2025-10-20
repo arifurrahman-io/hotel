@@ -129,7 +129,9 @@ const BookingPage = () => {
               <Card>
                 <Card.Header>
                   <img
-                    src={`http://localhost:8000${room.images[0]}`}
+                    src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                      room.images[0]
+                    }`}
                     alt={room.name}
                     className="w-full h-40 object-cover rounded-lg"
                   />

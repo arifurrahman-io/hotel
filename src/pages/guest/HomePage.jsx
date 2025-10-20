@@ -48,7 +48,7 @@ const HomePage = () => {
 
   const featuredRooms = rooms?.slice(0, 3);
   const heroImageURL = heroSettings
-    ? `http://localhost:8000${heroSettings.data.heroImage}`
+    ? `${import.meta.env.VITE_SERVER_BASE_URL}${heroSettings.data.heroImage}`
     : "";
 
   const handleSearch = () => {

@@ -104,7 +104,9 @@ const GuestProfilePage = () => {
         className="bg-white rounded-lg shadow-md border overflow-hidden flex flex-col sm:flex-row hover:shadow-xl transition-shadow duration-300"
       >
         <img
-          src={`http://localhost:8000${booking.room.images[0]}`}
+          src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+            booking.room.images[0]
+          }`}
           alt={booking.room.name}
           className="h-48 w-full sm:w-56 object-cover"
         />

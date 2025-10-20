@@ -19,7 +19,7 @@ const RoomCard = ({ room, isAvailable = true, availabilityText }) => {
   } = room;
 
   const imageUrl = images?.[0]
-    ? `http://localhost:8000${images[0]}`
+    ? `${import.meta.env.VITE_SERVER_BASE_URL}${images[0]}`
     : "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b";
 
   const hasWifi = amenities?.includes("High-Speed WiFi");

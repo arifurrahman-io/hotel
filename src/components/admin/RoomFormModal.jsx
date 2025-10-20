@@ -225,7 +225,7 @@ const RoomFormModal = ({ isOpen, onClose, roomToEdit, onSave }) => {
                     {formData.images?.map((url) => (
                       <div key={url} className="relative group">
                         <img
-                          src={`http://localhost:8000${url}`}
+                          src={`${import.meta.env.VITE_SERVER_BASE_URL}${url}`}
                           alt="Room preview"
                           className="w-full h-28 object-cover rounded-md"
                         />

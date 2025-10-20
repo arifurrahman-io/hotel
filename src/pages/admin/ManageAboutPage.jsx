@@ -118,7 +118,9 @@ const ManageAboutPage = () => {
                 <div className="flex items-center gap-4">
                   {formData.aboutImageOne && (
                     <img
-                      src={`http://localhost:8000${formData.aboutImageOne}`}
+                      src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                        formData.aboutImageOne
+                      }`}
                       alt="Header Preview"
                       className="w-40 h-24 object-cover rounded-md border"
                     />
@@ -146,7 +148,9 @@ const ManageAboutPage = () => {
                 <div className="flex items-center gap-4">
                   {formData.aboutImageTwo && (
                     <img
-                      src={`http://localhost:8000${formData.aboutImageTwo}`}
+                      src={`${import.meta.env.VITE_SERVER_BASE_URL}${
+                        formData.aboutImageTwo
+                      }`}
                       alt="Content Preview"
                       className="w-40 h-24 object-cover rounded-md border"
                     />

@@ -37,7 +37,7 @@ const AboutPage = () => {
       <div className="relative bg-gray-900 py-32 sm:py-48">
         <div className="absolute inset-0">
           <img
-            src={`http://localhost:8000${aboutImageOne}`}
+            src={`${import.meta.env.VITE_SERVER_BASE_URL}${aboutImageOne}`}
             alt="Luxurious hotel interior"
             className="w-full h-full object-cover opacity-40"
           />
@@ -91,7 +91,7 @@ const AboutPage = () => {
             <div className="relative pt-[100%] rounded-2xl shadow-xl overflow-hidden">
               <img
                 className="absolute inset-0 w-full h-full object-cover"
-                src={`http://localhost:8000${aboutImageTwo}`}
+                src={`${import.meta.env.VITE_SERVER_BASE_URL}${aboutImageTwo}`}
                 alt="Hotel amenity details"
               />
             </div>
